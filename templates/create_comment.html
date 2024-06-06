@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Создание комментария</h1>
+  <form method="POST" action="{{ url_for('create_comment', case_id=case.id) }}">
+    {{ form.hidden_tag() }}
+    {{ form.text.label }} {{ form.text }}
+    <br>
+    {{ form.submit }}
+  </form>
+  <hr>
+  <a href="{{ url_for('open_case', case_id=case.id) }}">Вернуться к кейсу</a>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Открытие кейса</h1>
+  <h2>Кейс: {{ case.name }}</h2>
+  <hr>
+  {% if item %}
+    <h3>Выпал предмет:</h3>
+    <p>{{ item.name }}</p>
+    {% if item.image_path.startswith('https://') %}
+      <img src="{{ item.image_path }}" alt="Фото выпавшего предмета" width="400" height="400">
+    {% else %}
+      <img src="{{ url_for('static', filename='images/' + item.image_path) }}" alt="Фото выпавшего предмета" width="400" height="400">
+    {% endif %}
+  {% else %}
+    <h3>Кейс пустой</h3>
+  {% endif %}
+  <hr>
+  <a href="{{ url_for('open_case', case_id=case.id) }}">Открыть кейс еще раз</a>
+  <hr>
+  <a href="{{ url_for('edit_case', case_id=case.id) }}">Редактировать кейс</a>
+  <a href="{{ url_for('delete_case', case_id=case.id) }}" id="delete_case">Удалить кейс</a>
+  <h3>Комментарии:</h3>
+  <ul>
+    {% for comment in comments %}
+      <li>{{ comment.user.name }}: {{ comment.text }}</li>
+      <a href="{{ url_for('edit_comment', comment_id=comment.id) }}">Редактировать коммент</a>
+      <a href="{{ url_for('delete_comment', comment_id=comment.id) }}">Удалить коммент</a>
+    {% endfor %}
+  </ul>
+  <a href="{{ url_for('create_comment', case_id=case.id) }}">Добавить комментарий:</a>
+{% endblock %}

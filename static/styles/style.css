@@ -1,0 +1,35 @@
+html {
+    font-family: 'Roboto', sans-serif;
+    background: lightblue;
+    text-align: center;
+}
+
+a {
+    background: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.chat {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    border: 4px solid black;
+    text-align: left;
+    background: #fff;
+}
+
+.chat_header {
+    text-align: center;
+    font-size: 24px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}

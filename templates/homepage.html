@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% for case in cases %}
+  <hr>
+  <div>
+    <h2 class="case">{{ case.name }}</h2>
+    {% if case.image_path.startswith("https://") %}
+    <img src="{{ case.image_path }}" alt="Фотография" width="400" height="400">
+    {% else %}
+    <img src="{{ url_for('static', filename='images/' + case.image_path) }}" alt="Avatar" width="400" height="400" id="{{ case.id }}">
+    {% endif %}
+  </div>
+  <br>
+  <a href="{{ url_for('open_case', case_id=case.id)}}" class="open_case">Открыть кейс</a>
+  {% endfor %}
+  <div class="chat">
+    <header class="chat_header">CHAT</header>
+    <ul id="messages"></ul>
+    <input id="message_input" autocomplete="off" />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+        let socket = io.connect('http://127.0.0.1:5000');
+
+        socket.on('message', function(message) {
+            let ul = document.getElementById('messages');
+            let li = document.createElement('li');
+            li.appendChild(document.createTextNode(message));
+            ul.appendChild(li);
+        });
+
+        function sendMessage() {
+            let message = document.getElementById('message_input').value;
+            if (message !== "") {
+                socket.emit('message', message);
+                document.getElementById('message_input').value = '';
+            }
+        }
+    </script>
+{% endblock %}

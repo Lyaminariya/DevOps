@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Создание предмета</h1>
+  <form method="POST" action="{{ url_for('create_item', case_id=case.id) }}" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{ form.name.label }} {{ form.name }}
+    <br>
+    {{ form.image.label }} {{ form.image }}
+    <br>
+    {{ form.submit }}
+  </form>
+  <a href="{{ url_for('edit_case', case_id=case.id) }}">Назад к редактированию кейса</a>
+{% endblock %}

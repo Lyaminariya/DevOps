@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <a href="/login/google">Login with Google</a>
+  <a href="/login/github">Login with GitHub</a>
+  <form action="" method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.username.label }}
+    {{ form.username() }}
+    <br>
+    {{ form.password.label }}
+    {{ form.password() }}
+    <br>
+    {{ form.confirm.label() }}
+    {{ form.confirm }}
+    <br>
+    {{ form.submit }}
+    {% for field, errors in form.errors.items() %}
+      <div class="wtf-error">
+          {{ form[field].label }}: {{ ', '.join(errors) }}
+      </div>
+    {% endfor %}
+    <br>
+    {{ error_msg }}
+  </form>
+{% endblock %}

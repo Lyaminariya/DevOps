@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Удаление кейса</h1>
+  <p>Вы уверены, что хотите удалить кейс "{{ case.name }}"?</p>
+
+  <form action="{{ url_for('delete_case', case_id=case.id) }}" method="POST">
+    <button type="submit" class="btn btn-danger" id="submit">Удалить</button>
+  </form>
+{% endblock %}

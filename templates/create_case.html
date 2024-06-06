@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Создание кейса</h1>
+  <form method="POST" action="{{ url_for('create_case') }}" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{ form.name.label }} {{ form.name }}
+    <br>
+    {{ form.image.label }} {{ form.image }}
+    <br>
+    {{ form.submit }}
+  </form>
+{% endblock %}

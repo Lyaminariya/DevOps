@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Редактирование коммента</h1>
+  <form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{ form.text.label }} {{ form.text }}
+    {{ form.submit() }}
+  </form>
+{% endblock %}

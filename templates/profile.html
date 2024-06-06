@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Ваши данные:</h1>
+<span>Никнейм: <span class="nickname">{{ user.name }}</span></span>&emsp;<a href="{{ url_for('change_username') }}">Редактировать имя пользователя</a>
+  <br>
+  <span>Email: {{ profile.email }}</span>&emsp;<a href="{{ url_for('change_email') }}">Редактировать емаил</a>
+  <br>
+  <a href="{{ url_for('change_password') }}">Редактировать пароль</a>
+  <br>
+  <hr>
+  {% if photo_filename %}
+    <img src="{{ url_for('static', filename='images/' + photo_filename) }}" alt="Фотография"  width="300" height="300">
+  {% else %}
+    <img src="{{ profile.avatar_href }}" alt="Avatar"  width="300" height="300">
+  {% endif %}
+  <br>
+  <a href="{{ url_for('upload_photo') }}">Редактировать фотографию</a>
+  <hr>
+  <a href="/logout">Выйти с сайта</a>
+{% endblock %}
